@@ -1,0 +1,15 @@
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://willow_garage</uri>
+      <name>gas_station</name>
+      <pose>-15.0 15.0 0 0 0 0</pose>
+    </include>
+  </world>
+</sdf>

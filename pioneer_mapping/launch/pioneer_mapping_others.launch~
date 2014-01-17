@@ -1,0 +1,15 @@
+<launch> 
+
+ <!--Launch joystick driver-->
+  <node name="joypad_driver" pkg="joy" type="joy_node">
+    <param name="dev" value="/dev/input/js0"/>
+  </node>
+
+  <!--Joypad teleoperation-->
+  <node name="joypad_teleoperation" pkg="pioneer_mapping" type="joypad_control"/>
+
+
+  <!-- Broadcast last tf, pioneer - map transform -->
+  <node name="pioneer_on_map_tf" pkg="pioneer_mapping" type="rviz_publisher"/>
+
+</launch>

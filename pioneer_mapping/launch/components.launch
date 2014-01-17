@@ -1,0 +1,39 @@
+<launch> 
+
+ <!--Launch joystick driver-->
+  <node name="joystick_driver" pkg="joy" type="joy_node">
+    <param name="dev" value="/dev/input/js0"/>
+  </node>
+
+  <!--Joypad teleoperation-->
+  <node name="joystick_teleoperation" pkg="pioneer_mapping" type="joystick_control"/>
+
+
+  <!-- Broadcast last tf, pioneer - map transform -->
+  <node name="rviz_publisher" pkg="pioneer_mapping" type="rviz_publisher"/>
+
+
+
+
+  <!--loads robot_description-->
+  <include file="$(find p2os_urdf)/launch/upload_pioneer3at.xml"/>
+  
+  <!-- publish TFs for static links -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+
+    <param name="publish_frequency" type="double" value="50.0"/>
+    <param name="tf_prefix" type="string" value=""/>
+ 
+  </node>
+
+
+  <!--includes gazebo world to simulation-->
+  <include file="$(find gazebo_ros)/launch/willowgarage_world.launch">
+    <!--arg name="world_name" value="$(find pioneer_mapping)/worlds/willow_garage.world"/-->
+
+ </include>
+
+  <!--spawns robot from robot_description-->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.051 -urdf -param robot_description -model pioneer" respawn="false" output="screen" />
+
+</launch>

@@ -1,0 +1,24 @@
+<launch>
+
+  <!--loads robot_description-->
+  <include file="$(find p2os_urdf)/launch/upload_pioneer3at.xml"/>
+  
+  <!-- publish TFs for static links -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+
+    <param name="publish_frequency" type="double" value="20.0"/>
+    <param name="tf_prefix" type="string" value=""/>
+ 
+  </node>
+
+
+  <!--includes gazebo world to simulation-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find pioneer_mapping)/worlds/gas_station.world"/>
+
+ </include>
+
+  <!--spawns robot from robot_description-->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.051 -urdf -param robot_description -model pioneer" respawn="false" output="screen" />
+
+</launch>
