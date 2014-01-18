@@ -37,7 +37,7 @@ Odom::Odom(){
   odomD = 0;
   ros::Rate r(50);
 
-  tf.header.frame_id = "odom";
+  tf.header.frame_id = "map";
   tf.child_frame_id = "base_link";
 
   while(ros::ok()){

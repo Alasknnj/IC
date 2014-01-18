@@ -54,7 +54,7 @@ void MapTransform::odomStart(){
     odomY += sin(odomA)*velX*dt;
     odomA += velA*dt;
 
-    odom_trans.header.frame_id = "map";
+    odom_trans.header.frame_id = "Map";
     odom_trans.child_frame_id = "base_link";
     odom_trans.header.stamp = ros::Time::now();
 

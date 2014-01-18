@@ -168,8 +168,11 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(joypad_control src/joypad_control.cpp)
-target_link_libraries(joypad_control ${catkin_LIBRARIES})
+add_executable(joystick_control src/joystick_control.cpp)
+target_link_libraries(joystick_control ${catkin_LIBRARIES})
 
 add_executable(rviz_publisher src/rviz_publisher.cpp)
 target_link_libraries(rviz_publisher ${catkin_LIBRARIES})
+
+add_executable(laser_node src/laser_node.cpp)
+target_link_libraries(laser_node ${catkin_LIBRARIES})

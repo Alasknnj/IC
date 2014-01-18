@@ -2,7 +2,7 @@
 
  <!--Launch joystick driver-->
   <node name="joystick_driver" pkg="joy" type="joy_node">
-    <param name="dev" value="/dev/input/js0"/>
+    <param name="dev" value="/dev/input/js1"/>
   </node>
 
   <!--Joypad teleoperation-->
@@ -27,8 +27,14 @@
   </node>
 
 
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler">
+    <param name="max_scans" type="int" value="10000" />
+    <param name="fixed_frame" type="string" value="odom" />
+  </node>
+
+
   <!--includes gazebo world to simulation-->
-  <include file="$(find gazebo_ros)/launch/willowgarage.launch">
+  <include file="$(find gazebo_ros)/launch/willowgarage_world.launch">
     <!--arg name="world_name" value="$(find pioneer_mapping)/worlds/willow_garage.world"/-->
 
  </include>

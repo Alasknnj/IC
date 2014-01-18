@@ -1,0 +1,221 @@
+<robot name="Pioneer">
+
+ <link name="base_link">
+  <visual>
+   <geometry>
+    <box size=".4 .25 .20"/>
+   </geometry>
+   <material name="red">
+    <color rgba="1 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <box size=".25 .25 .20"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <link name="base_front">
+  <visual>
+   <geometry>
+    <cylinder radius=".125" length=".2"/>
+   </geometry>
+   <material name="red">
+    <color rgba="1 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <cylinder radius=".125" length=".2"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="baseBottomConect" type="fixed">
+  <origin xyz=".15 0 0"/>
+  <parent link="base_link"/>
+  <child link="base_front"/>
+ </joint>
+
+ <link name="base_plataform">
+  <visual>
+   <geometry>
+    <box size=".4 .3 .005"/>
+   </geometry>
+   <material name="red">
+    <color rgba="1 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <box size=".25 .3 .005"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="baseTop" type="fixed">
+  <origin xyz="0 0 .1025"/>
+  <parent link="base_link"/>
+  <child link="base_plataform"/>
+ </joint>
+
+ <link name="base_vanguard">
+  <visual>
+   <geometry>
+    <cylinder radius="0.15" length="0.005"/>
+   </geometry>
+   <material name="red">
+    <color rgba="1 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <cylinder radius="0.15" length="0.005"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="basePlataform" type="fixed">
+  <origin xyz="0.15 0 0"/>
+  <parent link="base_plataform"/>
+  <child link="base_vanguard"/>
+ </joint>
+
+ <link name="base_wheel1">
+  <origin rpy="0 0 0"/>
+  <visual>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <material name="black">
+    <color rgba="0 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="wheelConnect1" type="continuous">
+  <origin xyz=".15 -.165 -.1" rpy="-1.5708 0 0"/>
+  <axis xyz="1 0 0"/>
+  <parent link="base_link"/>
+  <child link="base_wheel1"/>
+ </joint>
+
+ <link name="base_wheel2">
+  <origin rpy="0 0 0"/>
+  <visual>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <material name="black">
+    <color rgba="0 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="wheelConnect2" type="continuous">
+  <origin xyz=".15 .165 -.1" rpy="-1.5708 0 0"/>
+  <axis xyz="-1 0 0"/>
+  <parent link="base_link"/>
+  <child link="base_wheel2"/>
+ </joint>
+
+ <link name="base_wheel3">
+  <origin rpy="0 0 0"/>
+  <visual>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <material name="black">
+    <color rgba="0 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="wheelConnect3" type="continuous">
+  <origin xyz="-.15 -.165 -.1" rpy="-1.5708 0 0"/>
+  <axis xyz="1 0 0"/>
+  <parent link="base_link"/>
+  <child link="base_wheel3"/>
+ </joint>
+
+ <link name="base_wheel4">
+  <origin rpy="0 0 0"/>
+  <visual>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <material name="black">
+    <color rgba="0 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <cylinder radius="0.105" length="0.08"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="wheelConnect4" type="continuous">
+  <origin xyz="-.15 .165 -.1" rpy="-1.5708 0 0"/>
+  <axis xyz="-1 0 0"/>
+  <parent link="base_link"/>
+  <child link="base_wheel4"/>
+ </joint>
+
+ <link name="base_laser">
+  <visual>
+   <geometry>
+    <box size=".1 .1 .1"/>
+   </geometry>
+   <material name="black">
+    <color rgba="0 0 0 1"/>
+   </material>
+  </visual>
+  <collision>
+   <geometry>
+    <box size=".15 .15 .2"/>
+   </geometry>
+   <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+  </collision>
+ </link>
+
+ <joint name="laserConnect" type="fixed">
+  <origin xyz=".15 0 .05" />
+  <parent link="base_plataform"/>
+  <child link="base_laser"/>
+ </joint>
+
+ <sensor name="my_ray_sensor" update_rate="20">
+   <parent link="base_laser"/>
+   <origin xyz="0 0 0" rpy="0 0 0"/>
+   <ray>
+     <horizontal samples="100" resolution="1" min_angle="-1.5708" max_angle="1.5708"/>
+     <vertical samples="1" resolution="1" min_angle="0" max_angle="0"/>
+   </ray>
+ </sensor>
+
+</robot>

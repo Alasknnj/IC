@@ -23,8 +23,8 @@ private:
  void Joystick_teleop::joyCallback(const sensor_msgs::Joy joy){
  geometry_msgs::Twist vel;
  if(joy.buttons[0]==1){
-  float angular_scale = 1.25*(joy.axes[2]+1);
-  float linear_scale = 1.25*(joy.axes[2]+1);
+  float angular_scale = 2.5*(joy.axes[2]+1);
+  float linear_scale = 2.5*(joy.axes[2]+1);
   vel.angular.z = angular_scale*joy.axes[0];
   vel.linear.x = linear_scale*joy.axes[1];
   }

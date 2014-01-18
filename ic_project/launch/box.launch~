@@ -1,0 +1,5 @@
+<launch>
+        <param name="robot_description" command="cat $(find ic_project)/urdf/Box.xml" />
+        <node name="control_box" pkg="ic_project" type="control_box"/>
+
+</launch>

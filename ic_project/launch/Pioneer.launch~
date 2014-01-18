@@ -1,0 +1,17 @@
+<launch>
+        <param name="robot_description" command="cat $(find ic_project)/urdf/Pioneer3at.urdf" />
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+        <node name="pioneer_state_publisher" pkg="ic_project" type="pioneer_state"/>
+	<node name="joy_node" pkg="joy" type="joy_node">
+		<param name="dev" value="/dev/input/js1"/>
+	</node>
+        <node name="pioneer_teleop_joy" pkg="ic_project" type="joypad_teleop"/>	
+        <node name="rviz" pkg="rviz" type="rviz"/>
+
+  <param name="robot_description" command="cat $(find ic_project)/urdf/Pioneer3at.urdf" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find pioneer_mapping)/worlds/gas_station.world"/>
+
+ </include>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.051 -urdf -param robot_description -model pioneer" respawn="false" output="screen" />
+</launch>

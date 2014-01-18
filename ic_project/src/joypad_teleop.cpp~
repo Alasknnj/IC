@@ -1,0 +1,42 @@
+#include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
+#include <sensor_msgs/Joy.h>
+
+
+class Joypad_teleop{
+public:
+ Joypad_teleop();
+private:
+ void joyCallback(const sensor_msgs::Joy joy);
+ 
+ ros::NodeHandle n;
+ ros::Publisher pub;
+ ros::Subscriber sub;
+};
+
+ Joypad_teleop::Joypad_teleop(){
+ pub = n.advertise<geometry_msgs::Twist>("cmd_vel",1);
+ sub = n.subscribe<sensor_msgs::Joy>("joy",10,&Joypad_teleop::joyCallback,this);
+
+ }
+
+ void Joypad_teleop::joyCallback(const sensor_msgs::Joy joy){
+ geometry_msgs::Twist vel;
+ float angular_scale = 1.5;
+ float linear_scale = 1.5;
+ vel.angular.z = angular_scale*joy.axes[0];
+ vel.linear.x = linear_scale*joy.axes[1];
+
+ pub.publish(vel);
+ } 
+
+
+int main(int argc, char **argv){
+
+ros::init(argc,argv,"joypad_teleop");
+
+Joypad_teleop joy_tel;
+
+ros::spin();
+return 0;
+}

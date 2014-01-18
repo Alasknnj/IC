@@ -1,0 +1,19 @@
+#include <ros/ros.h>
+
+int main(int argc , char **argv){
+
+ros::init(argc,argv,"dummy publisher");
+ros::NodeHandle n;
+
+ros::Publisher pub = n.advertise<geometry_msgs::Twist>("dummy",50);
+ros::Rate r(30);
+while(ros::ok()){
+
+}
+
+
+
+
+return 0;
+}
+
